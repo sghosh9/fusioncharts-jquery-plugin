@@ -9,7 +9,7 @@ export default {
         "6": "update-chart-data",
         "7": "update-chart-attribute",
         "8": "trigger-event-from-chart",
-        "9": "percentage-calculation",
+        // "9": "percentage-calculation",
         "10": "client-side-export",
         "11": "drill-down-chart",
         "12": "render-a-widget",
@@ -67,12 +67,12 @@ export default {
                 "vue-fc": "//jsfiddle.net/fusioncharts/f0b2e0ms/embedded/"
             }
         },
-        "9": {
-            "title": "Percentage Calculation",
-            "interactiveViewURL": {
-                "vue-fc": "//jsfiddle.net/fusioncharts/f0b2e0ms/embedded/"
-            }
-        },
+        // "9": {
+        //     "title": "Percentage Calculation",
+        //     "interactiveViewURL": {
+        //         "vue-fc": "//jsfiddle.net/fusioncharts/f0b2e0ms/embedded/"
+        //     }
+        // },
         "10": {
             "title": "Client side exporting",
             "interactiveViewURL": {

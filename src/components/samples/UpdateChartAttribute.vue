@@ -100,41 +100,39 @@ export default {
     }]
 }`,
     sourceHTML:
-`<div id="app">
-    <fusioncharts
-    :type="type"
-    :width="width"
-    :height="height"
-    :dataFormat="dataFormat"
-    :dataSource="dataSource"
-    ></fusioncharts>
-    <button @click="changeBackground">Change Chart Background</button>
-</div>`,
+`<div id="chart-container">
+    FusionCharts will render here
+</div>
+<button id='update'>Change Chart Background</button>`,
 sourceJS:
-`FusionCharts.ready(function() {
+`let FusionCharts = require('fusioncharts');
+let Charts = require('fusioncharts/fusioncharts.charts');
+let $ = require('jquery');
+let jQFc = require('jquery-fusioncharts');
 
-    Vue.use(VueFusionCharts);
-    
-    // Load datasource from data.json
-    var dataSource = getDataSource(); 
+Charts(FusionCharts);
 
-    var app = new Vue({
-        el: "#app",
-        data: {
-            width: '700',
-            height: '400',
-            type: "column2d",
-            dataFormat: "json",
-            dataSource: dataSource
-        },
-        methods:{
-            changeBackground: function(){
-                const data = extend({}, this.dataSource); //copy of object
-                data.chart.bgColor = "#efefef";
-                this.dataSource = data;
-            }
-        }
-    });
+FusionCharts.ready(function() {
+	var btn = document.getElementById("update");
+	var dataSource = {/* see data tab */ };
+
+	btn.addEventListener("click", function() {
+		var dataArrayNew = $.extend({}, dataSource);
+		dataArrayNew.chart.bgColor = "#efefef";
+		$("#chart-container").updateFusionCharts({
+			dataFormat: "json",
+			dataSource: dataArrayNew
+		});
+	});
+
+  // Using FusionChart"s jQuery method insertFusionCharts() to create FusionCharts.
+	$("#chart-container").insertFusionCharts({
+		type: "column2d",
+		width: "500",
+		height: "300",
+		dataFormat: "json",
+		dataSource: dataSource
+	})
 });`,
         options: {
             width: '600',
@@ -148,7 +146,7 @@ sourceJS:
     },
     created: function(){
         this.dataSource = JSON.parse(this.sourceData)
-        
+
     },
     watch: {
         changeBackground: function(){

@@ -97,45 +97,29 @@ export default {
         "value": "30"
     }]
 }`,
-        sourceHTML:
-`<div id="app">
-    <fusioncharts
-    :type="type"
-    :width="width"
-    :height="height"
-    :dataFormat="dataFormat"
-    :events="events"
-    :dataSource="dataSource"
-    ></fusioncharts>
-    <p>The value that you have selected is: {{ displayValue }}</p>
-</div>`,
-        sourceJS:
-`FusionCharts.ready(function() {
+    sourceHTML:
+`<div id="chart-container">
+    FusionCharts will render here
+</div>
+<p id="message">The value that you have selected is: <span></span></p>`,
+sourceJS:
+`let FusionCharts = require('fusioncharts');
+let Charts = require('fusioncharts/fusioncharts.charts');
+let $ = require('jquery');
+let jQFc = require('jquery-fusioncharts');
 
-    Vue.use(VueFusionCharts);
-    
-    // Load datasource from data.json
-    var dataSource = getDataSource(); 
+Charts(FusionCharts);
 
-    var app = new Vue({
-        el: "#app",
-        data: {
-            width: '600',
-            height: '400',
-            type: "column2d",
-            dataFormat: "json",
-            dataSource: dataSource,
-            events: {
-                dataplotRollover: null
-            },
-            displayValue:""
-        },
-        created: function(){
-            this.options.events.dataplotRollover = (e, arg)=>{
-                this.displayValue = arg.displayValue;
-            }
-        },
-    });
+$('#chart-container').insertFusionCharts({
+    type: "column2d",
+    width: "600",
+    height: "400",
+    dataFormat: "json",
+    dataSource: {/* see data tab */ },
+});
+
+$('#chart-container').bind('fusionchartsdataplotrollover', function(event, args) {
+    $('#message span').text(args.displayValue);
 });`,
         options: {
             width: '600',

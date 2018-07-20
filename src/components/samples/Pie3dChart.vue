@@ -89,34 +89,24 @@ export default {
     }]
 }`,
     sourceHTML:
-`<div id="app">
-    <fusioncharts
-    :type="type"
-    :width="width"
-    :height="height"
-    :dataFormat="dataFormat"
-    :dataSource="dataSource"
-    ></fusioncharts>
+`<div id="chart-container">
+    FusionCharts will render here
 </div>`,
 sourceJS:
-`FusionCharts.ready(function() {
+`let FusionCharts = require('fusioncharts');
+let Charts = require('fusioncharts/fusioncharts.charts');
+let $ = require('jquery');
+let jQFc = require('jquery-fusioncharts');
 
-    Vue.use(VueFusionCharts);
-    
-    // Load datasource from data.json
-    var dataSource = getDataSource(); 
+Charts(FusionCharts);
 
-    var app = new Vue({
-        el: "#app",
-        data: {
-            type: "pie3d",
-            width: "600",
-            height: "400",
-            dataFormat: "json",
-            dataSource: dataSource
-        }
-    });
-});`,
+$('#chart-container').insertFusionCharts({
+    type: "pie3d",
+    width: "600",
+    height: "400",
+    dataFormat: "json",
+    dataSource: {/* see data tab */ },
+}`,
         options: {
                 type: "pie3d",
                 width: "600",

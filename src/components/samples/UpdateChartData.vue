@@ -101,49 +101,44 @@ export default {
     }]
 }`,
     sourceHTML:
-`<div id="app">
-    <fusioncharts
-    :type="type"
-    :width="width"
-    :height="height"
-    :dataFormat="dataFormat"
-    :dataSource="dataSource"
-    ></fusioncharts>
-    <button @click="updateData">Click to Update Data</button>
-</div>`,
+`<div id="chart-container">
+    FusionCharts will render here
+</div>
+<button id='update'>Click to Update Data</button>`,
 sourceJS:
-`FusionCharts.ready(function() {
+`let FusionCharts = require('fusioncharts');
+let Charts = require('fusioncharts/fusioncharts.charts');
+let $ = require('jquery');
+let jQFc = require('jquery-fusioncharts');
 
-    Vue.use(VueFusionCharts);
-    
-    // Load datasource from data.json
-    var dataSource = getDataSource(); 
+Charts(FusionCharts);
 
-    var app = new Vue({
-        el: "#app",
-        data: {
-            type: "column2d",
-            width: "400",
-            height: "350",
-            dataFormat: "json",
-            dataSource: dataSource
-        },
-        methods:{
-            updateData: function(){
-                const data = extend({}, this.dataSource);
-                data.data[2].label = "This Label is Updated";
-                data.data[2].value = this.getRandomNumber();
+FusionCharts.ready(function() {
+	var dataSource = {/* see data tab */ };
+	var btn = document.getElementById("update");
+	function getRandomNumber() {
+		var max = 300, min = 50;
+		return Math.round(((max - min) * Math.random()) + min);
+	}
 
-                data.data[3].label = "This is updated as well";
-                data.data[3].value = this.getRandomNumber();
-                this.dataSource = data;
-            },
-            getRandomNumber: function () {
-                var max = 300, min = 50;
-                return Math.round(((max - min) * Math.random()) + min);
-            }
-        },
-    });
+	btn.addEventListener("click", function() {
+		var dataArrayNew = $.extend({}, dataSource);
+		dataArrayNew.data[2].value = getRandomNumber();
+		dataArrayNew.data[3].value = getRandomNumber();
+		$("#chart-container").updateFusionCharts({
+			dataFormat: "json",
+			dataSource: dataArrayNew
+		});
+	});
+
+    // Using FusionChart"s jQuery method insertFusionCharts() to create FusionCharts.
+	$("#chart-container").insertFusionCharts({
+		type: "column2d",
+		width: "500",
+		height: "300",
+		dataFormat: "json",
+		dataSource: dataSource
+	})
 });`,
         options: {
             type: "Column2D",

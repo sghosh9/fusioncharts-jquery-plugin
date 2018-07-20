@@ -2,9 +2,9 @@ import images from './images'
 export default {
         "name": "vue-fc",
         "logo": images.logo,
-        "heading": "Vue-FusionCharts",
-        "subHeading": "Simple and Lightweight VueJS component for FusionCharts JavaScript Charting Library.",
-        "about": "The Vue-FusionCharts component lets you easily include FusionCharts in your Vue.js projects. It easily adds interactive chart to your VueJS applications.",
+        "heading": "jQuery-FusionCharts",
+        "subHeading": "Simple and Lightweight jQuery component for FusionCharts JavaScript Charting Library.",
+        "about": "The jQuery-FusionCharts component lets you easily include FusionCharts in your jQuery projects. It easily adds interactive chart to your jQuery applications.",
         "features": [
             "Adds a chart using just a single component.",
             "Auto-updates the chart object when the data source is modified.",

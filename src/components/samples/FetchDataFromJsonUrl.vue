@@ -97,31 +97,24 @@ export default {
     }]
 }`,
     sourceHTML:
-`<div id="app">
-    <fusioncharts
-    :type="type"
-    :width="width"
-    :height="height"
-    :dataFormat="dataFormat"
-    :dataSource="dataSource"
-    ></fusioncharts>
+`<div id="chart-container">
+    FusionCharts will render here
 </div>`,
 sourceJS:
-`FusionCharts.ready(function() {
+`let FusionCharts = require('fusioncharts');
+let Charts = require('fusioncharts/fusioncharts.charts');
+let $ = require('jquery');
+let jQFc = require('jquery-fusioncharts');
 
-    Vue.use(VueFusionCharts);
+Charts(FusionCharts);
 
-    var app = new Vue({
-        el: "#app",
-        data: {
-            type: "mscombi2d",
-            width: "600",
-            height: "400",
-            dataFormat: "jsonurl",
-            dataSource: "data.json"
-        }
-    });
-});`,
+$('#chart-container').insertFusionCharts({
+    type: "mscombi2d",
+    width: "600",
+    height: "400",
+    dataFormat: "jsonurl",
+    dataSource: "data.json"
+}`,
         options: {
                 type: "column2d",
                 width: "600",

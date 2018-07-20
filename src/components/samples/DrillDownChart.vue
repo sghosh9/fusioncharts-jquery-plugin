@@ -174,33 +174,37 @@ export default {
       ]
   }`,
     sourceHTML:
-`<div id="app">
-    <fusioncharts
-    :type="type"
-    :width="width"
-    :height="height"
-    :dataFormat="dataFormat"
-    :dataSource="dataSource"
-    ></fusioncharts>
+`<div id="chart-container">
+    FusionCharts will render here
 </div>`,
 sourceJS:
-`FusionCharts.ready(function() {
+`let FusionCharts = require('fusioncharts');
+let Charts = require('fusioncharts/fusioncharts.charts');
+let $ = require('jquery');
+let jQFc = require('jquery-fusioncharts');
 
-    Vue.use(VueFusionCharts);
-    
-    // Load datasource from data.json
-    var dataSource = getDataSource(); 
+Charts(FusionCharts);
 
-    var app = new Vue({
-        el: "#app",
-        data: {
-            width: '600',
-            height: '400',
-            type: "column2d",
-            dataFormat: "json",
-            dataSource: dataSource
-        }
-    });
+$('#chart-container').insertFusionCharts({
+	id: "drill-down-chart",
+	type: "column2d",
+	width: '600',
+	height: '400',
+	dataFormat: "json",
+	dataSource: {/* see data tab */ },
+});
+
+$('#chart-container').bind('fusionchartsrendered', function(event, args) {
+	FusionCharts.items["drill-down-chart"].configureLink({
+		type: 'pie2d',
+		width: '500',
+		overlayButton: {
+		  message: 'close',
+		  fontColor: '880000',
+		  bgColor: 'FFEEEE',
+		  borderColor: '660000',
+		},
+	}, 0);
 });`,
         options: {
             width: '600',
@@ -222,8 +226,8 @@ sourceJS:
     methods: {
         configureLink: function(chart){
             this.chartInstance = chart; // Save it for further use
-    
-            // Configure Drilldown attributes 
+
+            // Configure Drilldown attributes
             // See this : https://www.fusioncharts.com/dev/api/fusioncharts/fusioncharts-methods#configureLink
             this.chartInstance.configureLink({
             type: "pie2d",

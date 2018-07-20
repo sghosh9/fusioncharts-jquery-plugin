@@ -214,41 +214,47 @@ export default {
     }
 }`,
     sourceHTML:
-`<div id="app">
-    <fusioncharts
-    :type="type"
-    :width="width"
-    :height="height"
-    :dataFormat="dataFormat"
-    :dataSource="dataSource"
-    ></fusioncharts>
-    <button @click="exportToPdf">Export to PDF</button>
-</div>`,
+`<div id="chart-container1">
+    FusionCharts will render here
+</div>
+<div id="chart-container2">
+    FusionCharts will render here
+</div>
+<button id='export'>Export to PDF</button>`,
 sourceJS:
-`FusionCharts.ready(function() {
+`let FusionCharts = require('fusioncharts');
+let Charts = require('fusioncharts/fusioncharts.charts');
+let $ = require('jquery');
+let jQFc = require('jquery-fusioncharts');
 
-    Vue.use(VueFusionCharts);
-    
-    // Load datasource from data.json
-    var dataSource = getDataSource(); 
+Charts(FusionCharts);
 
-    var app = new Vue({
-        el: "#app",
-        data: {
-            width: '600',
-            height: '400',
-            type: "column2d",
-            dataFormat: "json",
-            dataSource: dataSource
-        },
-        methods: {
-            exportToPdf: function(){
-                FusionCharts.batchExport({
-                    exportFormat:'pdf'
-                });
-            }
-        }
-    });
+FusionCharts.ready(function() {
+	var btn = document.getElementById("export");
+	var columnData = {/* see data tab */ }
+	var barData = {/* see data tab */ }
+
+	btn.addEventListener("click", function() {
+		FusionCharts.batchExport({
+			exportFormat:'pdf'
+		});
+	});
+
+  	// Using FusionChart"s jQuery method insertFusionCharts() to create FusionCharts.
+	$("#chart-container1").insertFusionCharts({
+		type: "column2d",
+		width: "500",
+		height: "300",
+		dataFormat: "json",
+		dataSource: columnData
+	});
+	$("#chart-container2").insertFusionCharts({
+		type: "bar2d",
+		width: "500",
+		height: "500",
+		dataFormat: "json",
+		dataSource: barData
+	});
 });`,
             options: {
                 width: '600',

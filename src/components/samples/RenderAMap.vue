@@ -128,34 +128,26 @@ export default {
         }
     ]
 }`,
-    sourceHTML:
-`<div id="app">
-    <fusioncharts
-    :type="type"
-    :width="width"
-    :height="height"
-    :dataFormat="dataFormat"
-    :dataSource="dataSource"
-    ></fusioncharts>
+sourceHTML:
+`<div id="chart-container">
+    FusionCharts will render here
 </div>`,
 sourceJS:
-`FusionCharts.ready(function() {
+`let FusionCharts = require('fusioncharts');
+let Maps = require('fusioncharts/fusioncharts.maps');
+let World = require('fusioncharts/maps/fusioncharts.world');
+let $ = require('jquery');
+let jQFc = require('jquery-fusioncharts');
 
-    Vue.use(VueFusionCharts);
-    
-    // Load datasource from data.json
-    var dataSource = getDataSource(); 
+Maps(FusionCharts);
+World(FusionCharts);
 
-    var app = new Vue({
-        el: "#app",
-        data: {
-            width: '600',
-            height: '400',
-            type: "world",
-            dataFormat: "json",
-            dataSource: dataSource
-        }
-    });
+$('#chart-container').insertFusionCharts({
+	type: "world",
+	width: '600',
+	height: '400',
+	dataFormat: "json",
+	dataSource: {/* see data tab */ },
 });`,
         options: {
             width: '600',
