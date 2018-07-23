@@ -12,7 +12,7 @@ export default {
             "Allows to include interactivity between javascript charts.",
             "Offers advanced control by giving you access to the complete FusionCharts object (that contains the chart configuration)."
         ],
-        "githubRepo": "https://github.com/fusioncharts/vue-fusioncharts",
-        "issuesURL": "https://github.com/fusioncharts/vue-fusioncharts/issues",
-        "newIssueURL": "https://github.com/fusioncharts/vue-fusioncharts/issues/new"
+        "githubRepo": "https://github.com/fusioncharts/fusioncharts-jquery-plugin",
+        "issuesURL": "https://github.com/fusioncharts/fusioncharts-jquery-plugin/issues",
+        "newIssueURL": "https://github.com/fusioncharts/fusioncharts-jquery-plugin/issues/new"
 }
