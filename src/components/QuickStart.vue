@@ -103,9 +103,9 @@
 
 $(&#39;#btnClone&#39;).click(function() {
     // Clone the chart to create a column chart representation of the same data
-    $(â€˜#chart-containerâ€™).cloneFusionCharts(function() {
+    $(&#39;#chart-container&#39;).cloneFusionCharts(function() {
         // Append the cloned chart to the same chart container
-        $(â€˜#chart-containerâ€™).appendFusionCharts(this[0]);
+        $(&#39;#chart-container&#39;).appendFusionCharts(this[0]);
     }, {
         &#39;id&#39;: &#39;chart-clone&#39;,
         &#39;type&#39;: &#39;column2d&#39;
@@ -153,9 +153,9 @@ $(&#39;#btnClone&#39;).click(function() {
 
 $(&#39;#btnClone&#39;).click(function() {
     // Clone the chart to create a column chart representation of the same data
-    $(â€˜#chart-containerâ€™).cloneFusionCharts(function() {
+    $(&#39;#chart-container&#39;).cloneFusionCharts(function() {
         // Prepend the cloned chart to the same chart container
-        $(â€˜#chart-containerâ€™).prependFusionCharts(this[0]);
+        $(&#39;#chart-container&#39;).prependFusionCharts(this[0]);
     }, {
         &#39;id&#39;: &#39;chart-clone&#39;,
         &#39;type&#39;: &#39;column2d&#39;

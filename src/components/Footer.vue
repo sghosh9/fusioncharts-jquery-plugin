@@ -10,33 +10,20 @@
                 rel="noreferrer noopener"
                 target="_blank"
               >
-              Github Repo
-              </a>
+               Github Repo
+              </a>&nbsp;&nbsp;|&nbsp;&nbsp;
             </div>
           </li>
-          <li class="community-virtical-line-item">
-            <div class="community-virtical-line">
-              <VerticalLine :styles="verticalLineStyle" />
-            </div>
-          </li>
+
           <li>
             <div class="community-menu-item">
-              <a :href="issuesURL" rel="noreferrer noopener" target="_blank">Issues</a>
+               <a :href="issuesURL" rel="noreferrer noopener" target="_blank">Issues</a>&nbsp;&nbsp;|&nbsp;&nbsp;
             </div>
           </li>
-          <li class="community-virtical-line-item">
-            <div class="community-virtical-line">
-              <VerticalLine :styles="verticalLineStyle" />
-            </div>
-          </li>
+
           <li>
             <div class="community-menu-item">
-              <a href="http://twitter.com/fusioncharts" rel="noreferrer noopener" target="_blank">FusionCharts Twitter</a>
-            </div>
-          </li>
-          <li class="community-virtical-line-item">
-            <div class="community-virtical-line">
-              <VerticalLine :styles="verticalLineStyle" />
+              <a href="http://twitter.com/fusioncharts" rel="noreferrer noopener" target="_blank">FusionCharts Twitter</a>&nbsp;&nbsp;|&nbsp;&nbsp;
             </div>
           </li>
           <li>
